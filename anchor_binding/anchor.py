@@ -7,6 +7,7 @@ class AnchorAPI:
         self._bin_path = bin_path
 
     def get_balance(self):
-        process = subprocess.Popen(self._bin_path.split(), stdout=subprocess.PIPE)
+        process = subprocess.Popen(self._bin_path.split(),
+                                   stdout=subprocess.PIPE)
         output, error = process.communicate()
         return json.loads(output)
