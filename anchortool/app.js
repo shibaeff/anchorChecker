@@ -5,18 +5,14 @@ const CHAINS = AnchorEarnPackage.CHAINS;
 const DENOMS = AnchorEarnPackage.DENOMS;
 const NETWORKS = AnchorEarnPackage.NETWORKS;
 
-const account = new Account(CHAINS.TERRA);
 
-const getAnchorInfo = async (terra_address, res, next) => {
+
+const getAnchorInfo = async (terra_address) => {
     try {
         const anchorEarn = new AnchorEarn({
             chain: CHAINS.TERRA,
             network: NETWORKS.COLUMBUS_5,
             address: terra_address
-        });
-
-        const userBalance = await anchorEarn.balance({
-            currencies: [DENOMS.UST],
         });
 
         const marketInfo = await anchorEarn.market({
@@ -39,5 +35,7 @@ const getAnchorInfo = async (terra_address, res, next) => {
 };
 
 (async () => {
-    console.log((await getAnchorInfo(account.accAddress)))
+    const account = new Account(CHAINS.TERRA);
+    addr = account.accAddress;
+    console.log((await getAnchorInfo(addr)))
 })()
