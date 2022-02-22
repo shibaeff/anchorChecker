@@ -3,7 +3,7 @@ import json
 
 
 class AnchorAPI:
-    def __init__(self, bin_path):
+    def __init__(self, bin_path="./app"):
         self._bin_path = bin_path
 
     def get_balance(self):

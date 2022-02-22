@@ -37,5 +37,6 @@ const getAnchorInfo = async (terra_address) => {
 (async () => {
     const account = new Account(CHAINS.TERRA);
     addr = account.accAddress;
-    console.log((await getAnchorInfo(addr)))
+    let s = await getAnchorInfo(addr)
+    console.log(JSON.stringify(s, null, 2))
 })()
