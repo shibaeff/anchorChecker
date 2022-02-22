@@ -1,4 +1,6 @@
 import logging
 
+
 if __name__ == "__main__":
-    logging.info("Anchor tool started")
+    logging.basicConfig(level=logging.INFO)
+    logging.info("Anchor bot app started...")
