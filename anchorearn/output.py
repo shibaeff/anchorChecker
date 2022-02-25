@@ -1,0 +1,2 @@
+class CHAINS:
+    TERRA = 'terra'
