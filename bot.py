@@ -1,3 +1,4 @@
+"""All bot stuff is in this file."""
 from telebot.async_telebot import AsyncTeleBot
 from telebot.asyncio_handler_backends import State, StatesGroup
 from telebot.asyncio_storage import StatePickleStorage
@@ -24,12 +25,14 @@ bot = AsyncTeleBot(
 
 
 class BotStates(StatesGroup):
+    """All bot states."""
+
     registration = State()
 
 
 @bot.message_handler(commands=["start"])
 async def poll_threshhold(message):
-    """write the prompt to enter threshhold, set state to recieving the answer"""
+    """Write the prompt to enter threshhold, set state to recieving the answer."""
     logging.debug(message.text)
     # TODO: gather theese two tasks
     await bot.set_state(message.from_user.id, BotStates.registration, message.chat.id)
@@ -39,7 +42,7 @@ async def poll_threshhold(message):
 
 @bot.message_handler(state=BotStates.registration)
 async def register_user(message):
-    """add user to database(or not, lol)"""
+    """Add user to state backend."""
     # TODO: проверить что похоже на число и/или процент регэкспом
     async with bot.retrieve_data(message.from_user.id) as data:
         logging.debug(message.from_user.id)
@@ -51,7 +54,7 @@ async def register_user(message):
 
 
 async def run_notifications():
-    """query the Anchor API and go through users to send if APY drops"""
+    """Query the Anchor API and go through users to send if APY drops."""
     balance = AnchorAPI("./anchor_binding/app").get_balance()
     for user_cred in users:
         async with bot.retrieve_data(user_cred) as data:
@@ -63,14 +66,14 @@ async def run_notifications():
 
 
 async def scheduler_process():
-    """routine to query notifications-wait an hour-repeat"""
+    """Routine to query notifications-wait an hour-repeat."""
     while True:
         await run_notifications()
         await asyncio.sleep(3600)
 
 
 async def main():
-    """main loop"""
+    """Gather all needed tasks in bot loop."""
     await asyncio.gather(bot.infinity_polling(), scheduler_process())
 
 
