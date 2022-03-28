@@ -1,15 +1,17 @@
 """All bot stuff is in this file."""
+import asyncio
+import configparser
+import logging
+
+from telebot import asyncio_filters
 from telebot.async_telebot import AsyncTeleBot
 from telebot.asyncio_handler_backends import State, StatesGroup
 from telebot.asyncio_storage import StatePickleStorage
+
 from anchor_binding.anchor import AnchorAPI
-from telebot import asyncio_filters
-import configparser
-import asyncio
-import logging
 
 # TODO : THIS IS A BODGE GET RID OF THIS ASAP
-users = list()
+users = []
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -24,7 +26,7 @@ bot = AsyncTeleBot(
 )
 
 
-class BotStates(StatesGroup):
+class BotStates(StatesGroup): # noqa: R0903
     """All bot states."""
 
     registration = State()
@@ -34,9 +36,12 @@ class BotStates(StatesGroup):
 async def poll_threshhold(message):
     """Write the prompt to enter threshhold, set state to recieving the answer."""
     logging.debug(message.text)
-    # TODO: gather theese two tasks
-    await bot.set_state(message.from_user.id, BotStates.registration, message.chat.id)
-    await bot.send_message(message.chat.id, "Input your threshold:")
+    asyncio.gather(
+        await bot.set_state(
+            message.from_user.id, BotStates.registration, message.chat.id
+        ),
+        await bot.send_message(message.chat.id, "Input your threshold:"),
+    )
     # logging.debug(await bot.get_state(message.from_user, message.chat.id))
 
 
