@@ -26,7 +26,7 @@ bot = AsyncTeleBot(
 )
 
 
-class BotStates(StatesGroup): # noqa: R0903
+class BotStates(StatesGroup):  # noqa: R0903
     """All bot states."""
 
     registration = State()
@@ -35,14 +35,12 @@ class BotStates(StatesGroup): # noqa: R0903
 @bot.message_handler(commands=["start"])
 async def poll_threshhold(message):
     """Write the prompt to enter threshhold, set state to recieving the answer."""
-    logging.debug(message.text)
     asyncio.gather(
-        await bot.set_state(
+        bot.set_state(
             message.from_user.id, BotStates.registration, message.chat.id
         ),
-        await bot.send_message(message.chat.id, "Input your threshold:"),
+        bot.send_message(message.chat.id, "Input your threshold:"),
     )
-    # logging.debug(await bot.get_state(message.from_user, message.chat.id))
 
 
 @bot.message_handler(state=BotStates.registration)
