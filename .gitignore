@@ -295,5 +295,8 @@ dist
 .svelte-kit
 
 config.cfg
+.state-save
+.vscode
+.mypy_cache
 
 # End of https://www.toptal.com/developers/gitignore/api/node
