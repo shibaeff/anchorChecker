@@ -32,7 +32,10 @@ async def register_user(message):
     """
     add user to database(or not, lol)
     """
-    # WARNING: если добавлять еще стейты(вроже коннекта с кошельком, то надо добавлять через retrieve_data(типа как тут https://github.com/eternnoir/pyTelegramBotAPI/blob/master/examples/asynchronous_telebot/custom_states.py))
+    # WARNING: если добавлять еще стейты(вроже коннекта с кошельком, т
+    # о надо добавлять через
+    # retrieve_data(типа как тут
+    # https://github.com/eternnoir/pyTelegramBotAPI/blob/master/examples/asynchronous_telebot/custom_states.py))
     # TODO: проверить что похоже на число и/или процент регэкспом
     users[message.sender] = float(message.text)
 
