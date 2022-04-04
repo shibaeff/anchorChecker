@@ -1,3 +1,4 @@
+"""AnchorBot bot entry point..."""
 import logging
 
 
