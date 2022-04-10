@@ -16,8 +16,8 @@ users = set()
 logging.basicConfig(level=logging.DEBUG)
 
 config = configparser.ConfigParser()
-config.read("config.cfg")
-
+with open("config.cfg"):
+    config.read("config.cfg")
 
 bot = AsyncTeleBot(
     config["TELEGRAM"]["API_TOKEN"],
@@ -130,8 +130,3 @@ async def scheduler_process():
 async def main():
     """Gather all needed tasks in bot loop."""
     await asyncio.gather(bot.infinity_polling(), scheduler_process())
-
-
-bot.add_custom_filter(asyncio_filters.StateFilter(bot))
-
-asyncio.run(main())
