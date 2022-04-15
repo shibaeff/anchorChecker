@@ -17,7 +17,6 @@ Welcome to AnchorTools's documentation!
 
 Ссылка на репозиторий:
 ----------------------
-https://github.com/CocoDiorr/PythonGameDevelopment2022
 
 Участники:
 ------------------
@@ -26,6 +25,14 @@ https://github.com/CocoDiorr/PythonGameDevelopment2022
     * Ilya Savitsky
 
 .. image:: _static/anchor.png
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Packages:
+
+   bot
+
+
 
 Indices and tables
 ==================
