@@ -16,7 +16,7 @@ users = set()
 logging.basicConfig(level=logging.DEBUG)
 
 config = configparser.ConfigParser()
-with open("config.cfg"):
+with open("../config.cfg"):
     config.read("config.cfg")
 
 bot = AsyncTeleBot(
@@ -110,7 +110,7 @@ async def list_notifiers(message):
 
 async def run_notifications():
     """Query the Anchor API and go through users to send if APY drops."""
-    balance = AnchorAPI("./anchor_binding/app").get_balance()
+    balance = AnchorAPI("../anchor_binding/app").get_balance()
     for user_cred in users:
         async with bot.retrieve_data(*user_cred) as data:
             for notifier, amount in data.items():

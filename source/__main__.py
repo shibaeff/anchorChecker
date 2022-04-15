@@ -1,6 +1,6 @@
 """AnchorBot bot entry point..."""
 import logging
-from bot.bot import *
+from bot import *
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
