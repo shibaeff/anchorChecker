@@ -112,11 +112,11 @@ async def list_notifiers(message):
 
 async def run_notifications():
     """Query the Anchor API and go through users to send if APY drops."""
-    balance = AnchorAPI("./anchor_binding/app").get_balance()
+    apy = AnchorAPI("./anchor_binding/app").get_balance()
     for user_cred in users:
         async with bot.retrieve_data(*user_cred) as data:
             for notifier, amount in data.items():
-                if balance["APY"] < amount:
+                if apy["APY"] < amount:
                     await bot.send_message(
                         user_cred[1], f"Alarm! APY dropped below {amount} on notifier {notifier}"
                     )
