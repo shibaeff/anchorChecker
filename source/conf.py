@@ -5,7 +5,8 @@ sys.path.insert(0, os.path.join(os.path.abspath('..'), 'anchor_binding'))
 # sys.path.insert(0, os.path.join(os.path.abspath('..'),'bot'))
 sys.path.insert(0, os.path.join(os.path.abspath('..'), 'pckg1'))
 # sys.path.insert(0, os.path.abspath('.'))
-
+locale_dirs = ['locale/']   # path is example but recommended.
+gettext_compact = False
 
 # -- Project information -----------------------------------------------------
 
