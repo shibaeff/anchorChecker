@@ -38,10 +38,3 @@ https://github.com/shibaeff/anchorChecker
    anchor_binding
 
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

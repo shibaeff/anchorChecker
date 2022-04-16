@@ -1,22 +1,7 @@
-bot package
-===========
-
-Submodules
-----------
-
-bot.bot module
---------------
-
-.. automodule:: bot.bot
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
-Module contents
----------------
+bot module
+=============
 
 .. automodule:: bot
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
