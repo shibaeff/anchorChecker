@@ -2,16 +2,14 @@
 import asyncio
 import configparser
 import logging
-
-from telebot import asyncio_filters
-import os
-cwd = os.getcwd()
-print(cwd)
 from telebot.async_telebot import AsyncTeleBot
 from telebot.asyncio_handler_backends import State, StatesGroup
 from telebot.asyncio_storage import StatePickleStorage
+from anchor_binding.anchor import AnchorAPI
+import os
 
-from anchor_binding import AnchorAPI
+cwd = os.getcwd()
+print(cwd)
 
 # TODO : THIS IS A BODGE GET RID OF THIS ASAP
 users = set()
@@ -83,6 +81,7 @@ async def register_user(message):
 
 @bot.message_handler(state=BotStates.naming_notifier)
 async def name_notifier(message):
+    """Add docstring"""
     async with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
         if data.get("threshold"):
             data[message.text] = data["threshold"]
@@ -113,11 +112,11 @@ async def list_notifiers(message):
 
 async def run_notifications():
     """Query the Anchor API and go through users to send if APY drops."""
-    balance = AnchorAPI("./anchor_binding/app").get_balance()
+    apy = AnchorAPI("./anchor_binding/app").get_balance()
     for user_cred in users:
         async with bot.retrieve_data(*user_cred) as data:
             for notifier, amount in data.items():
-                if balance["APY"] < amount:
+                if apy["APY"] < amount:
                     await bot.send_message(
                         user_cred[1], f"Alarm! APY dropped below {amount} on notifier {notifier}"
                     )

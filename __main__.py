@@ -1,6 +1,7 @@
 """AnchorBot bot entry point..."""
 import logging
-from bot.bot import *
+from bot.bot import bot, main, asyncio_filters
+import asyncio
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
