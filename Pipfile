@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pytelegrambotapi = "*"
+aiohttp = "*"
+
+[dev-packages]
+autopep8 = "*"
+flake8 = "*"
+pydocstyle = "*"
+mypy = "*"
+
+[requires]
+python_version = "3.8"
