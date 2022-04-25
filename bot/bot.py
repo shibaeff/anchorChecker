@@ -36,7 +36,7 @@ class BotStates(StatesGroup):  # noqa: R0903
 
 
 @bot.message_handler(commands=["start", "help"])
-async def greet_threshhold(message):
+async def greet_threshhold(message: telebot.types.Message) -> None:
     """Greet a new user and specify all commands
 
     After starting a bot, display this help message.
@@ -63,7 +63,7 @@ Right now the updates it's APY once in an hour
 
 
 @bot.message_handler(commands=["apy"])
-async def poll_threshhold(message):
+async def poll_threshhold(message: telebot.types.Message) -> None:
     """Write the prompt to enter threshhold, set state to recieving the answer.
     
     :param message: Telegram message(its content is not relevant). Then, state is set to adding_apy.
@@ -93,7 +93,7 @@ async def register_user(message):
 
 
 @bot.message_handler(state=BotStates.naming_notifier)
-async def name_notifier(message):
+async def name_notifier(message: telebot.types.Message) -> None:
     """Set the name of the notifier.
     
     :param message: Telegram message(its content consists of the name of the notifier). Then, state is set to monitoring_state.
@@ -115,7 +115,7 @@ async def name_notifier(message):
 
 
 @bot.message_handler(state=BotStates.monitoring_state, commands=["list"])
-async def list_notifiers(message):
+async def list_notifiers(message: telebot.types.Message) -> None:
     """List all notifiers for a user.
     
     :param message: Telegram message(its content is not relevant). Then, state is set to monitoring_state.
