@@ -12,7 +12,7 @@ AnchorTools
 
 Project goal:
 ------------------
-To implement a python3 telegram bot that check Anchor Protocol.
+To implement a python3 telegram bot that checks Anchor Protocol.
 
 Repository Link:
 ----------------------
