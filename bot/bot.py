@@ -2,12 +2,14 @@
 import asyncio
 import configparser
 import logging
+import telebot
 from telebot.async_telebot import AsyncTeleBot
 from telebot.asyncio_handler_backends import State, StatesGroup
 from telebot.asyncio_storage import StatePickleStorage
 from anchor_binding.anchor import AnchorAPI
 import os
 import gettext
+
 
 translation = gettext.translation('counter', 'pots', fallback=True)
 _, ngettext = translation.gettext, translation.ngettext

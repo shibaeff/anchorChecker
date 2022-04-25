@@ -1,6 +1,7 @@
 """AnchorBot bot entry point..."""
 import logging
-from bot.bot import bot, main, asyncio_filters
+from telebot import asyncio_filters
+from bot.bot import bot, main
 import asyncio
 
 if __name__ == "__main__":
