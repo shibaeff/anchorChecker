@@ -37,7 +37,12 @@ class BotStates(StatesGroup):  # noqa: R0903
 
 @bot.message_handler(commands=["start", "help"])
 async def greet_threshhold(message):
-    """Greet a new user and specify all commands"""
+    """Greet a new user and specify all commands
+
+    After starting a bot, display this help message.
+    :param message: Telegram message(its content is not relevant)
+    :type message: telebot.types.Message
+    """
     asyncio.gather(
         bot.set_state(
             message.from_user.id, BotStates.monitoring_state, message.chat.id
@@ -59,7 +64,11 @@ Right now the updates it's APY once in an hour
 
 @bot.message_handler(commands=["apy"])
 async def poll_threshhold(message):
-    """Write the prompt to enter threshhold, set state to recieving the answer."""
+    """Write the prompt to enter threshhold, set state to recieving the answer.
+    
+    :param message: Telegram message(its content is not relevant). Then, state is set to adding_apy.
+    :type message: telebot.types.Message
+    """
     asyncio.gather(
         bot.set_state(message.from_user.id, BotStates.adding_apy, message.chat.id),
         bot.send_message(message.chat.id, "Input your threshold:"),
@@ -68,7 +77,11 @@ async def poll_threshhold(message):
 
 @bot.message_handler(state=BotStates.adding_apy)
 async def register_user(message):
-    """Add user to state backend."""
+    """Add user to state backend.
+    
+    :param message: Telegram message(its content consists of the threshold parameter). Then, state is set to naming_notifier.
+    :type message: telebot.types.Message
+    """
     # TODO: проверить что похоже на число и/или процент регэкспом
     async with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
         data["threshold"] = float(message.text)
@@ -81,7 +94,11 @@ async def register_user(message):
 
 @bot.message_handler(state=BotStates.naming_notifier)
 async def name_notifier(message):
-    """Add docstring"""
+    """Set the name of the notifier.
+    
+    :param message: Telegram message(its content consists of the name of the notifier). Then, state is set to monitoring_state.
+    :type message: telebot.types.Message
+    """
     async with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
         if data.get("threshold"):
             data[message.text] = data["threshold"]
@@ -99,7 +116,11 @@ async def name_notifier(message):
 
 @bot.message_handler(state=BotStates.monitoring_state, commands=["list"])
 async def list_notifiers(message):
-    """List all notifiers for a user."""
+    """List all notifiers for a user.
+    
+    :param message: Telegram message(its content is not relevant). Then, state is set to monitoring_state.
+    :type message: telebot.types.Message
+    """
     async with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
         # logging.debug(data)
         if data:
