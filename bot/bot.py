@@ -2,11 +2,17 @@
 import asyncio
 import configparser
 import logging
+import telebot
 from telebot.async_telebot import AsyncTeleBot
 from telebot.asyncio_handler_backends import State, StatesGroup
 from telebot.asyncio_storage import StatePickleStorage
 from anchor_binding.anchor import AnchorAPI
 import os
+import gettext
+
+
+translation = gettext.translation('counter', 'pots', fallback=True)
+_, ngettext = translation.gettext, translation.ngettext
 
 cwd = os.getcwd()
 print(cwd)
@@ -36,7 +42,7 @@ class BotStates(StatesGroup):  # noqa: R0903
 
 
 @bot.message_handler(commands=["start", "help"])
-async def greet_threshhold(message):
+async def greet_threshhold(message: telebot.types.Message) -> None:
     """Greet a new user and specify all commands"""
     asyncio.gather(
         bot.set_state(
@@ -44,7 +50,7 @@ async def greet_threshhold(message):
         ),
         bot.send_message(
             message.chat.id,
-            """
+            _("""
 Hi! Welcome to anchorChecker bot!
 Right now it supports notifies for the following commands:
 /apy - add a new APY notifier
@@ -52,22 +58,22 @@ Right now it supports notifies for the following commands:
 /list - list all current notifiers
 /help - show this help
 Right now the updates it's APY once in an hour
-    """,
+    """),
         ),
     )
 
 
 @bot.message_handler(commands=["apy"])
-async def poll_threshhold(message):
-    """Write the prompt to enter threshhold, set state to recieving the answer."""
+async def poll_threshhold(message: telebot.types.Message) -> None:
+    """Write the prompt to enter threshold, set state to recieving the answer."""
     asyncio.gather(
         bot.set_state(message.from_user.id, BotStates.adding_apy, message.chat.id),
-        bot.send_message(message.chat.id, "Input your threshold:"),
+        bot.send_message(message.chat.id, _("Input your threshold:")),
     )
 
 
 @bot.message_handler(state=BotStates.adding_apy)
-async def register_user(message):
+async def register_user(message:telebot.types.Message) -> None:
     """Add user to state backend."""
     # TODO: проверить что похоже на число и/или процент регэкспом
     async with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
@@ -75,19 +81,19 @@ async def register_user(message):
         users.add((message.from_user.id, message.chat.id))
     asyncio.gather(
         bot.set_state(message.from_user.id, BotStates.naming_notifier, message.chat.id),
-        bot.send_message(message.chat.id, "Input threshhold's name"),
+        bot.send_message(message.chat.id, _("Input threshhold's name")),
     )
 
 
 @bot.message_handler(state=BotStates.naming_notifier)
-async def name_notifier(message):
+async def name_notifier(message: telebot.types.Message) -> None:
     """Add docstring"""
     async with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
         if data.get("threshold"):
             data[message.text] = data["threshold"]
             del data["threshold"]
             logging.debug(
-                f"added thershhold name {message.text} with value {data[message.text]}"
+                _("added thershhold name {} with value {}").format(message.text, data[message.text])
             )
         else:
             # TODO: throw exception
@@ -98,19 +104,19 @@ async def name_notifier(message):
 
 
 @bot.message_handler(state=BotStates.monitoring_state, commands=["list"])
-async def list_notifiers(message):
+async def list_notifiers(message: telebot.types.Message) -> None:
     """List all notifiers for a user."""
     async with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
         # logging.debug(data)
         if data:
             for notifier in data.items():
-                logging.debug(f"found notifier: {notifier}")
-                await bot.send_message(message.chat.id, f"found notifier: {notifier}")
+                logging.debug(_("found notifier: {}").format(notifier))
+                await bot.send_message(message.chat.id, _("found notifier: {}").format(notifier))
         else:
-            await bot.send_message(message.chat.id, "no notifiers set yet")
+            await bot.send_message(message.chat.id, _("No notifiers set yet"))
 
 
-async def run_notifications():
+async def run_notifications() -> None:
     """Query the Anchor API and go through users to send if APY drops."""
     apy = AnchorAPI("./anchor_binding/app").get_balance()
     for user_cred in users:
@@ -118,17 +124,17 @@ async def run_notifications():
             for notifier, amount in data.items():
                 if apy["APY"] < amount:
                     await bot.send_message(
-                        user_cred[1], f"Alarm! APY dropped below {amount} on notifier {notifier}"
+                        user_cred[1], _("Alarm! APY dropped below {} on notifier {}").format(amount, notifier)
                     )
 
 
-async def scheduler_process():
+async def scheduler_process() -> None:
     """Routine to query notifications-wait an hour-repeat."""
     while True:
         await run_notifications()
         await asyncio.sleep(3600)
 
 
-async def main():
+async def main() -> None:
     """Gather all needed tasks in bot loop."""
     await asyncio.gather(bot.infinity_polling(), scheduler_process())

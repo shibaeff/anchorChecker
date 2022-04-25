@@ -293,7 +293,7 @@ dist
 
 # SvelteKit build / generate output
 .svelte-kit
-
+config.cfg
 bot/config.cfg
 .state-save
 .vscode
