@@ -132,7 +132,7 @@ async def scheduler_process() -> None:
     """Routine to query notifications-wait an hour-repeat."""
     while True:
         await run_notifications()
-        await asyncio.sleep(3600)
+        await asyncio.sleep(3)
 
 
 async def main() -> None:
