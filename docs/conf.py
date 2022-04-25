@@ -1,22 +1,33 @@
-"""File for"""
+# -*- coding: utf-8 -*-
+#
+# Configuration file for the Sphinx documentation builder.
+#
+# This file does only contain a selection of the most common options. For a
+# full list see the documentation:
+# http://www.sphinx-doc.org/en/master/config
+
+# -- Path setup --------------------------------------------------------------
+
+# If extensions (or modules to document with autodoc) are in another directory,
+# add these directories to sys.path here. If the directory is relative to the
+# documentation root, use os.path.abspath to make it absolute, like shown here.
+#
 import os
 import sys
 sys.path.insert(0, os.path.join(os.path.abspath('..'), 'anchor_binding'))
-# sys.path.insert(0, os.path.join(os.path.abspath('..'),'bot'))
-sys.path.insert(0, os.path.join(os.path.abspath('..'), 'pckg1'))
-# sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.join(os.path.abspath('..'),'bot'))
 
 
 # -- Project information -----------------------------------------------------
 
-project = 'AnchorTool'
-copyright = '2022, Pavel Shibaev, Ilya Savitsky'
-author = 'Pavel Shibaev, Ilya Savitsky'
+project = 'Anchor Checker Bot'
+copyright = '2022, Pavel Shibaev & Ilya Savitsky'
+author = 'Pavel Shibaev & Ilya Savitsky'
 
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = ''
+release = '0.0.0'
 
 
 # -- General configuration ---------------------------------------------------
@@ -29,9 +40,7 @@ release = ''
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.viewcode',
-    'sphinxcontrib.openapi',
+    "sphinx.ext.autodoc",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -56,7 +65,7 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = None
@@ -94,7 +103,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'AnchorTooldoc'
+htmlhelp_basename = 'AnchorCheckerBotdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -121,8 +130,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'AnchorTool.tex', 'AnchorTool Documentation',
-     'Pavel Shibaev, Ilya Savitsky', 'manual'),
+    (master_doc, 'AnchorCheckerBot.tex', 'Anchor Checker Bot Documentation',
+     'Pavel Shibaev \\& Ilya Savitsky', 'manual'),
 ]
 
 
@@ -131,7 +140,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'anchortool', 'AnchorTool Documentation',
+    (master_doc, 'anchorcheckerbot', 'Anchor Checker Bot Documentation',
      [author], 1)
 ]
 
@@ -142,8 +151,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'AnchorTool', 'AnchorTool Documentation',
-     author, 'AnchorTool', 'One line description of project.',
+    (master_doc, 'AnchorCheckerBot', 'Anchor Checker Bot Documentation',
+     author, 'AnchorCheckerBot', 'One line description of project.',
      'Miscellaneous'),
 ]
 

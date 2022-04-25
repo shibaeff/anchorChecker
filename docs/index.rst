@@ -11,19 +11,19 @@ AnchorTools
     :caption: Contents:
 
 Project goal:
-------------------
+-------------
 To implement a python3 telegram bot that check Anchor Protocol.
 
 Суть проекта:
-------------------
+-------------
 реализовать бота-проверяльщика для мониторинга состояния Anchor Protocol в блокчейне Terra
 
 Ссылка на репозиторий / Repository Link:
-----------------------
+----------------------------------------
 https://github.com/shibaeff/anchorChecker
 
 Участники / Developers:
-------------------
+-----------------------
 
     * Pavel Shibaev
     * Ilya Savitsky
@@ -38,10 +38,3 @@ https://github.com/shibaeff/anchorChecker
    anchor_binding
 
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
