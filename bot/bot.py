@@ -36,7 +36,7 @@ class BotStates(StatesGroup):  # noqa: R0903
 
 
 @bot.message_handler(commands=["start", "help"])
-async def greet_threshhold(message):
+async def greet_threshhold(message: telebot.types.Message) -> None:
     """Greet a new user and specify all commands"""
     asyncio.gather(
         bot.set_state(
@@ -58,8 +58,8 @@ Right now the updates it's APY once in an hour
 
 
 @bot.message_handler(commands=["apy"])
-async def poll_threshhold(message):
-    """Write the prompt to enter threshhold, set state to recieving the answer."""
+async def poll_threshhold(message: telebot.types.Message) -> None:
+    """Write the prompt to enter threshold, set state to recieving the answer."""
     asyncio.gather(
         bot.set_state(message.from_user.id, BotStates.adding_apy, message.chat.id),
         bot.send_message(message.chat.id, "Input your threshold:"),
@@ -67,7 +67,7 @@ async def poll_threshhold(message):
 
 
 @bot.message_handler(state=BotStates.adding_apy)
-async def register_user(message):
+async def register_user(message:telebot.types.Message) -> None:
     """Add user to state backend."""
     # TODO: проверить что похоже на число и/или процент регэкспом
     async with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
@@ -80,7 +80,7 @@ async def register_user(message):
 
 
 @bot.message_handler(state=BotStates.naming_notifier)
-async def name_notifier(message):
+async def name_notifier(message: telebot.types.Message) -> None:
     """Add docstring"""
     async with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
         if data.get("threshold"):
@@ -98,7 +98,7 @@ async def name_notifier(message):
 
 
 @bot.message_handler(state=BotStates.monitoring_state, commands=["list"])
-async def list_notifiers(message):
+async def list_notifiers(message: telebot.types.Message) -> None:
     """List all notifiers for a user."""
     async with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
         # logging.debug(data)
@@ -110,7 +110,7 @@ async def list_notifiers(message):
             await bot.send_message(message.chat.id, "no notifiers set yet")
 
 
-async def run_notifications():
+async def run_notifications() -> None:
     """Query the Anchor API and go through users to send if APY drops."""
     apy = AnchorAPI("./anchor_binding/app").get_balance()
     for user_cred in users:
@@ -122,13 +122,13 @@ async def run_notifications():
                     )
 
 
-async def scheduler_process():
+async def scheduler_process() -> None:
     """Routine to query notifications-wait an hour-repeat."""
     while True:
         await run_notifications()
         await asyncio.sleep(3600)
 
 
-async def main():
+async def main() -> None:
     """Gather all needed tasks in bot loop."""
     await asyncio.gather(bot.infinity_polling(), scheduler_process())
