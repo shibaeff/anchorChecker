@@ -7,9 +7,9 @@ from telebot.async_telebot import AsyncTeleBot
 from telebot.asyncio_handler_backends import State, StatesGroup
 from telebot.asyncio_storage import StatePickleStorage
 from anchor_binding.anchor import AnchorAPI
-from telebot import asyncio_filters
 import os
 import gettext
+
 
 translation = gettext.translation('counter', 'pots', fallback=True)
 _, ngettext = translation.gettext, translation.ngettext
@@ -43,7 +43,12 @@ class BotStates(StatesGroup):  # noqa: R0903
 
 @bot.message_handler(commands=["start", "help"])
 async def greet_threshhold(message: telebot.types.Message) -> None:
-    """Greet a new user and specify all commands"""
+    """Greet a new user and specify all commands
+
+    After starting a bot, display this help message.
+    :param message: Telegram message(its content is not relevant)
+    :type message: telebot.types.Message
+    """
     asyncio.gather(
         bot.set_state(
             message.from_user.id, BotStates.monitoring_state, message.chat.id
@@ -65,7 +70,11 @@ Right now the updates it's APY once in an hour
 
 @bot.message_handler(commands=["apy"])
 async def poll_threshhold(message: telebot.types.Message) -> None:
-    """Write the prompt to enter threshold, set state to recieving the answer."""
+    """Write the prompt to enter threshhold, set state to recieving the answer.
+    
+    :param message: Telegram message(its content is not relevant). Then, state is set to adding_apy.
+    :type message: telebot.types.Message
+    """
     asyncio.gather(
         bot.set_state(message.from_user.id, BotStates.adding_apy, message.chat.id),
         bot.send_message(message.chat.id, _("Input your threshold:")),
@@ -73,8 +82,13 @@ async def poll_threshhold(message: telebot.types.Message) -> None:
 
 
 @bot.message_handler(state=BotStates.adding_apy)
-async def register_user(message: telebot.types.Message) -> None:
-    """Add user to state backend."""
+
+async def register_user(message):
+    """Add user to state backend.
+    
+    :param message: Telegram message(its content consists of the threshold parameter). Then, state is set to naming_notifier.
+    :type message: telebot.types.Message
+    """
     # TODO: проверить что похоже на число и/или процент регэкспом
     async with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
         data["threshold"] = float(message.text)
@@ -87,7 +101,12 @@ async def register_user(message: telebot.types.Message) -> None:
 
 @bot.message_handler(state=BotStates.naming_notifier)
 async def name_notifier(message: telebot.types.Message) -> None:
-    """Add docstring"""
+    """Set the name of the notifier.
+    
+    :param message: Telegram message(its content consists of the name of the notifier). Then, state is set to monitoring_state.
+    :type message: telebot.types.Message
+    """
+
     async with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
         if data.get("threshold"):
             data[message.text] = data["threshold"]
@@ -105,7 +124,11 @@ async def name_notifier(message: telebot.types.Message) -> None:
 
 @bot.message_handler(state=BotStates.monitoring_state, commands=["list"])
 async def list_notifiers(message: telebot.types.Message) -> None:
-    """List all notifiers for a user."""
+    """List all notifiers for a user.
+    
+    :param message: Telegram message(its content is not relevant). Then, state is set to monitoring_state.
+    :type message: telebot.types.Message
+    """
     async with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
         # logging.debug(data)
         if data:
@@ -132,16 +155,9 @@ async def scheduler_process() -> None:
     """Routine to query notifications-wait an hour-repeat."""
     while True:
         await run_notifications()
-        await asyncio.sleep(3)
+        await asyncio.sleep(3600)
 
 
 async def main() -> None:
     """Gather all needed tasks in bot loop."""
     await asyncio.gather(bot.infinity_polling(), scheduler_process())
-
-
-if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
-    logging.info("Anchor bot app started...")
-    bot.add_custom_filter(asyncio_filters.StateFilter(bot))
-    asyncio.run(main())
