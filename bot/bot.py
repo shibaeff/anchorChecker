@@ -7,9 +7,9 @@ from telebot.async_telebot import AsyncTeleBot
 from telebot.asyncio_handler_backends import State, StatesGroup
 from telebot.asyncio_storage import StatePickleStorage
 from anchor_binding.anchor import AnchorAPI
+from telebot import asyncio_filters
 import os
 import gettext
-
 
 translation = gettext.translation('counter', 'pots', fallback=True)
 _, ngettext = translation.gettext, translation.ngettext
@@ -73,7 +73,7 @@ async def poll_threshhold(message: telebot.types.Message) -> None:
 
 
 @bot.message_handler(state=BotStates.adding_apy)
-async def register_user(message:telebot.types.Message) -> None:
+async def register_user(message: telebot.types.Message) -> None:
     """Add user to state backend."""
     # TODO: проверить что похоже на число и/или процент регэкспом
     async with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
@@ -138,3 +138,10 @@ async def scheduler_process() -> None:
 async def main() -> None:
     """Gather all needed tasks in bot loop."""
     await asyncio.gather(bot.infinity_polling(), scheduler_process())
+
+
+if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
+    logging.info("Anchor bot app started...")
+    bot.add_custom_filter(asyncio_filters.StateFilter(bot))
+    asyncio.run(main())
