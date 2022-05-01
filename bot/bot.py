@@ -11,6 +11,7 @@ import os
 import gettext
 
 
+
 translation = gettext.translation('counter', 'pots', fallback=True)
 _, ngettext = translation.gettext, translation.ngettext
 
@@ -32,9 +33,35 @@ bot = AsyncTeleBot(
     state_storage=StatePickleStorage(),
 )
 
+class AnchorAPI:
+    """
+    A proxy class to the Anchor Protocol
+
+    :param bin_path: path to anchor_tool binary
+    :type: str, optional
+    """
+
+    def __init__(self, bin_path="./app"):
+        """Intialize with a binary tool"""
+        self._bin_path = bin_path
+
+    def get_balance(self) -> str:
+        """
+        Query protocol APY - annual percentage yield
+
+        :return: json with APY
+        :type: str
+        """
+        process = subprocess.Popen(self._bin_path.split(),
+                                   stdout=subprocess.PIPE)
+        output, error = process.communicate()
+        return json.loads(output)
+
 
 class BotStates(StatesGroup):  # noqa: R0903
-    """All bot states."""
+    """
+    All bot states.
+    """
 
     monitoring_state = State()
     adding_apy = State()
