@@ -10,6 +10,9 @@ Welcome to Anchor Checker's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   bot
+   anchor
+
 There should be text here, but not yet.
 
 Indices and tables
