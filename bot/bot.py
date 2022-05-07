@@ -10,6 +10,7 @@ import gettext
 from .anchor import AnchorAPI
 
 
+
 translation = gettext.translation('counter', 'pot`s', fallback=True)
 _, ngettext = translation.gettext, translation.ngettext
 
@@ -22,11 +23,16 @@ users = set()
 logging.basicConfig(level=logging.DEBUG)
 
 config = configparser.ConfigParser()
-with open("config.cfg"):
-    config.read("config.cfg")
+
+try:
+    with open("config.cfg"):
+        config.read("config.cfg")
+        token = config["TELEGRAM"]["API_TOKEN"]
+except:
+    token = os.getenv("KEY")
 
 bot = AsyncTeleBot(
-    config["TELEGRAM"]["API_TOKEN"],
+    token,
     parse_mode="MARKDOWN",
     state_storage=StatePickleStorage(),
 )

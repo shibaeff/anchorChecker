@@ -1,0 +1,7 @@
+version: "3.3"
+services:
+  anchorbot:
+    build: .
+    network_mode: "host"
+    environment:
+      KEY: ${KEY}
