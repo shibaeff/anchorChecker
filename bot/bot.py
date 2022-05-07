@@ -9,6 +9,8 @@ from telebot.asyncio_storage import StatePickleStorage
 from anchor_binding.anchor import AnchorAPI
 import os
 import gettext
+import subprocess
+import json
 
 
 
@@ -24,11 +26,16 @@ users = set()
 logging.basicConfig(level=logging.DEBUG)
 
 config = configparser.ConfigParser()
-with open("config.cfg"):
-    config.read("config.cfg")
+
+try:
+    with open("config.cfg"):
+        config.read("config.cfg")
+        token = config["TELEGRAM"]["API_TOKEN"]
+except:
+    token = os.getenv("KEY")
 
 bot = AsyncTeleBot(
-    config["TELEGRAM"]["API_TOKEN"],
+    token,
     parse_mode="MARKDOWN",
     state_storage=StatePickleStorage(),
 )
