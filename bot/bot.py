@@ -7,7 +7,7 @@ from telebot.async_telebot import AsyncTeleBot
 from telebot.asyncio_handler_backends import State, StatesGroup
 from telebot.asyncio_storage import StatePickleStorage
 import gettext
-from .anchor import AnchorAPI
+from anchor_binding.anchor import AnchorAPI
 
 
 
