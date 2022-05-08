@@ -8,10 +8,11 @@ from telebot.asyncio_handler_backends import State, StatesGroup
 from telebot.asyncio_storage import StatePickleStorage
 import gettext
 from anchor_binding.anchor import AnchorAPI
+import os
 
 
 
-translation = gettext.translation('counter', 'pot`s', fallback=True)
+translation = gettext.translation('bot', 'po', fallback=True)
 _, ngettext = translation.gettext, translation.ngettext
 
 # cwd = os.getcwd()
