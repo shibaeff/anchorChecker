@@ -304,3 +304,4 @@ bot/config.cfg
 
 
 .doit.db
+.pytest_cache
