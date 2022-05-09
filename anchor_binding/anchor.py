@@ -2,6 +2,7 @@
 
 import subprocess
 import json
+import requests
 
 
 class AnchorAPI:
@@ -27,3 +28,15 @@ class AnchorAPI:
                                    stdout=subprocess.PIPE)
         output, error = process.communicate()
         return json.loads(output)
+
+    def get_price(self) -> str:
+        """
+        Query current ANC price
+        :return a price
+        :type:  str
+        """
+        key = "https://api.binance.com/api/v3/ticker/price?symbol=ANCUSDT"
+        # requesting data from url
+        data = requests.get(key)
+        data = data.json()
+        return data['price']

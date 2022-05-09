@@ -13,7 +13,7 @@ Welcome to Anchor Checker's documentation!
    bot
    anchor
 
-A simple bot to monitor Anchor Protocol APY.
+There should be text here, but not yet.
 
 Indices and tables
 ==================
