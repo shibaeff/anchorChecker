@@ -5,3 +5,4 @@ services:
     network_mode: "host"
     environment:
       KEY: ${KEY}
+      LC_ALL: ${LC_ALL}
