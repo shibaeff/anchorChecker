@@ -64,7 +64,7 @@ class AnchorAPI:
         key = "https://api.binance.com/api/v3/ticker/24hr?symbol=USTUSDT"
         data = requests.get(key)
         data = data.json()
-        return float(data["weightedAvgPrice"]) * float(data["volumne"])
+        return float(data["weightedAvgPrice"]) * float(data["volume"])
 
     def get_anc_cap(self) -> float:
         """
@@ -75,4 +75,4 @@ class AnchorAPI:
         key = "https://api.binance.com/api/v3/ticker/24hr?symbol=ANCUSDT"
         data = requests.get(key)
         data = data.json()
-        return float(data["weightedAvgPrice"]) * float(data["volumne"])
+        return float(data["weightedAvgPrice"]) * float(data["volume"])

@@ -40,7 +40,7 @@ bot = AsyncTeleBot(
 
 DELTA = 3600
 
-class BotStates(StatesGroup):  # noqa: R0903
+class BotStates(StatesGroup):  # noqa: R0903,D200
     """
     All bot states.
     """
@@ -108,7 +108,7 @@ async def register_user(message):
 
 
 @bot.message_handler(state=BotStates.naming_notifier)
-async def name_notifier(message: telebot.types.Message) -> None:
+async def name_notifier(message: telebot.types.Message) -> None: # noqa: D202
     """Set the name of the notifier.
 
     :param message: Telegram message(its content consists of the name of the notifier). Then, state is set to monitoring_state.
