@@ -1,17 +1,17 @@
 import unittest
-import anchor_binding.anchor as anchor
+from anchor import AnchorAPI
 
 
-def test_get_balance():
-    obj = anchor.AnchorAPI()
-    assert (type(obj.get_balance()["APY"]) == float)
-    assert (obj.get_balance()["APY"] > 15.0)
+class TestAPI(unittest.TestCase):
+    def test_get_balance(self):
+        obj = AnchorAPI()
+        assert (type(obj.get_balance()["APY"]) == float)
+        assert (obj.get_balance()["APY"] > 15.0)
 
-
-def test_get_price():
-    obj = anchor.AnchorAPI()
-    assert (type(obj.get_balance()["APY"]) == float)
-    assert (obj.get_balance()["APY"] > 15.0)
+    def test_get_price(self):
+        obj = AnchorAPI().get_anc_price()
+        assert (type(obj) == float)
+        assert (obj > 0)
 
 
 if __name__ == "__main__":
