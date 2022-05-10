@@ -15,6 +15,8 @@ Welcome to Anchor Checker's documentation!
 
 A simple bot to monitor Anchor Protocol APY.
 
+.. mdinclude:: ../README.md
+
 Indices and tables
 ==================
 
