@@ -15,6 +15,7 @@ pydocstyle = "*"
 mypy = "*"
 sphinx = "*"
 doit = "*"
+m2r2 = "*"
 
 [requires]
 python_version = "3.8"
