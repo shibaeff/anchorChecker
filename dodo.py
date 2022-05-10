@@ -24,7 +24,7 @@ def task_run_tests():
 
 
 def task_run_checks():
-    """Run flake, pydocstring, tets"""
+    """Run flake, pydocstring, tests"""
     return {
         'actions': ['flake8 .', 'pydocstyle .', 'doit run_tests']
     }
