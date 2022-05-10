@@ -38,6 +38,7 @@ bot = AsyncTeleBot(
     state_storage=StatePickleStorage(),
 )
 
+DELTA = 3600
 
 class BotStates(StatesGroup):  # noqa: R0903
     """
@@ -162,7 +163,7 @@ async def scheduler_process() -> None:
     """Routine to query notifications-wait an hour-repeat."""
     while True:
         await run_notifications()
-        await asyncio.sleep(3600)
+        await asyncio.sleep(DELTA)
 
 
 async def main() -> None:

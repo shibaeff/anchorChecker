@@ -54,3 +54,25 @@ class AnchorAPI:
         data = requests.get(key)
         data = data.json()
         return float(data['price'])
+
+    def get_ust_cap(self) -> float:
+        """
+        Query current UST market cap
+
+        :return: a market cap
+        """
+        key = "https://api.binance.com/api/v3/ticker/24hr?symbol=USTUSDT"
+        data = requests.get(key)
+        data = data.json()
+        return float(data["weightedAvgPrice"]) * float(data["volumne"])
+
+    def get_anc_cap(self) -> float:
+        """
+        Query current ANC market cap
+
+        :return: a market cap
+        """
+        key = "https://api.binance.com/api/v3/ticker/24hr?symbol=ANCUSDT"
+        data = requests.get(key)
+        data = data.json()
+        return float(data["weightedAvgPrice"]) * float(data["volumne"])
