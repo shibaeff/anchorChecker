@@ -23,6 +23,13 @@ def task_run_tests():
     }
 
 
+def task_run_checks():
+    """Run flake, pydocstring, tets"""
+    return {
+        'actions': ['flake8 .', 'pydocstyle .', 'doit run_tests']
+    }
+
+
 def task_compile_ru():
     """Build russian localization"""
     return {

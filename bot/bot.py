@@ -10,8 +10,6 @@ import gettext
 from anchor_binding.anchor import AnchorAPI
 import os
 
-
-
 translation = gettext.translation('bot', 'po', fallback=True)
 _, ngettext = translation.gettext, translation.ngettext
 
@@ -29,7 +27,7 @@ try:
     with open("config.cfg"):
         config.read("config.cfg")
         token = config["TELEGRAM"]["API_TOKEN"]
-except:
+except Exception:
     token = os.getenv("KEY")
 
 bot = AsyncTeleBot(
@@ -39,6 +37,7 @@ bot = AsyncTeleBot(
 )
 
 DELTA = 3600
+
 
 class BotStates(StatesGroup):  # noqa: R0903,D200
     """
@@ -108,7 +107,7 @@ async def register_user(message):
 
 
 @bot.message_handler(state=BotStates.naming_notifier)
-async def name_notifier(message: telebot.types.Message) -> None: # noqa: D202
+async def name_notifier(message: telebot.types.Message) -> None:  # noqa: D202
     """Set the name of the notifier.
 
     :param message: Telegram message(its content consists of the name of the notifier). Then, state is set to monitoring_state.
