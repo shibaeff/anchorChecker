@@ -41,3 +41,16 @@ class AnchorAPI:
         data = requests.get(key)
         data = data.json()
         return float(data['price'])
+
+    def get_ust_price(self) -> float:
+        """
+        Query current ANC price
+
+        :return a price
+        :type:  float
+        """
+        key = "https://api.binance.com/api/v3/ticker/price?symbol=USTUSDT"
+        # requesting data from url
+        data = requests.get(key)
+        data = data.json()
+        return float(data['price'])

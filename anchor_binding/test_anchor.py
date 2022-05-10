@@ -8,8 +8,13 @@ class TestAPI(unittest.TestCase):
         assert (type(obj.get_balance()["APY"]) == float)
         assert (obj.get_balance()["APY"] > 15.0)
 
-    def test_get_price(self):
+    def test_get_anc_price(self):
         obj = AnchorAPI().get_anc_price()
+        assert (type(obj) == float)
+        assert (obj > 0)
+
+    def test_get_ust_price(self):
+        obj = AnchorAPI().get_ust_price()
         assert (type(obj) == float)
         assert (obj > 0)
 
