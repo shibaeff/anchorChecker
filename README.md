@@ -18,6 +18,9 @@ API_TOKEN: <your token here>
 Штука для работы с Telegram API, наша самописная штука на Node.js, которая, 
 в свою очередь, работает на Anchor SDK.
 
+**Документация**
+https://shibaeff.github.io/anchorBotDocs/
+
 **Интерфейс**
 
 `/help` - хелп по боту.
