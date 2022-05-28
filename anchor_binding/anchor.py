@@ -76,3 +76,14 @@ class AnchorAPI:
         data = requests.get(key)
         data = data.json()
         return float(data["weightedAvgPrice"]) * float(data["volume"])
+
+    def get_luna_price(self) -> float:
+        """
+        Query current LUNA market cap
+
+        :return: a market cap
+        """
+        key = "https://openapi.bitrue.com//api/v1/ticker/24hr?symbol=LUNAUSDT"
+        data = requests.get(key)
+        data = data.json()
+        return .5 * float(data["askPrice"]) + float(data["bidPrice"])
