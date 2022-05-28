@@ -28,6 +28,11 @@ class TestAPI(unittest.TestCase):
         assert (type(obj) == float)
         assert (obj > 0)
 
+    def test_get_luna_price(self):
+        obj = AnchorAPI().get_luna_price()
+        assert (type(obj) == float)
+        assert (obj > 0)
+
 
 if __name__ == "__main__":
     unittest.main()
