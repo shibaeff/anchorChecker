@@ -85,5 +85,5 @@ class AnchorAPI:
         """
         key = "https://openapi.bitrue.com//api/v1/ticker/24hr?symbol=LUNAUSDT"
         data = requests.get(key)
-        data = data.json()
+        data = data.json()[0]
         return .5 * float(data["askPrice"]) + float(data["bidPrice"])
