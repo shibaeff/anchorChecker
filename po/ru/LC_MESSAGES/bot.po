@@ -1,67 +1,116 @@
-# Russian translations for PROJECT.
+# Russian translations for .
 # Copyright (C) 2022 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
+# This file is distributed under the same license as the  project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.0.0\n"
+"Project-Id-Version:  0.0.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-25 01:35+0300\n"
+"POT-Creation-Date: 2022-05-30 00:56+0300\n"
 "PO-Revision-Date: 2022-04-25 01:37+0300\n"
 "Last-Translator: ILYA SAVITSKY <iipsavitsky234@gmail.com>\n"
 "Language: ru\n"
 "Language-Team: ru <LL@li.org>\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.6.0\n"
+"Generated-By: Babel 2.10.1\n"
 
-#: bot/bot.py:51
+#: bot/bot.py:66
 msgid ""
 "\n"
 "Hi! Welcome to anchorChecker bot!\n"
 "Right now it supports notifies for the following commands:\n"
 "/apy - add a new APY notifier\n"
-"/reserve - \n"
 "/list - list all current notifiers\n"
+"/anc_price - get the current price of ANC token\n"
+"/luna_price - get the current price of LUNA\n"
+"/anc_cap - get the current ANC token market cap\n"
+"/ust_cap - get the current UST market cap\n"
+"/ust_price - get the current UST price\n"
 "/help - show this help\n"
 "Right now the updates it's APY once in an hour\n"
 "    "
 msgstr ""
 "\n"
 "Привет! Добро пожаловать в anchorChecker бот!\n"
-"Пока что он поддерживает следующие команды:\n"
+"В данный момент он поддерживает следующие команды:\n"
 "/apy - добавить новый APY нотификатор\n"
-"/reserve - \n"
 "/list - список всех текущих нотификаторов\n"
+"/anc_price - текущая цена ANC токена\n"
+"/luna_price - текущая цена LUNA\n"
+"/anc_cap - текущий маркет кап ANC токена\n"
+"/ust_cap - текущий маркет кап UST\n"
+"/ust_price - текущая цена UST\n"
 "/help - показать эту помощь\n"
-"Пока что он обновляет APY один раз в час\n"
+"В данный момент обновления происходят раз в час\n"
 "    "
 
-#: bot/bot.py:69
+#: bot/bot.py:92
 msgid "Input your threshold:"
 msgstr "Введите границу:"
 
-#: bot/bot.py:82
+#: bot/bot.py:109
 msgid "Input threshhold's name"
 msgstr "Введите наименование границы"
 
-#: bot/bot.py:94
+#: bot/bot.py:126
 msgid "added thershhold name {} with value {}"
 msgstr "добавили границу {} с именем {}"
 
-#: bot/bot.py:111 bot/bot.py:112
+#: bot/bot.py:147 bot/bot.py:148
 msgid "found notifier: {}"
 msgstr "найден нотификатор: {}"
 
-#: bot/bot.py:114
+#: bot/bot.py:150
 msgid "No notifiers set yet"
 msgstr "Нотификаторов пока нет"
 
-#: bot/bot.py:125
+#: bot/bot.py:156
+msgid "Current ANC price is {}"
+msgstr "Текущая цена ANC составляет {}"
+
+#: bot/bot.py:162
+msgid "Current LUNA price is {}"
+msgstr "Текущая цена LUNA составляет {}"
+
+#: bot/bot.py:168
+msgid "Current ANC market cap is {}"
+msgstr "Текущая капитализация ANC составляет {}"
+
+#: bot/bot.py:174
+msgid "Current UST market cap is {}"
+msgstr "Текущая капитализация UST составляет {}"
+
+#: bot/bot.py:180
+msgid "Current UST price is {}"
+msgstr "Текущая цена UST составляет {}"
+
+#: bot/bot.py:191
 msgid "Alarm! APY dropped below {} on notifier {}"
 msgstr "Внимание! APY падает ниже {} на нотификаторе {}"
+
+#~ msgid ""
+#~ "\n"
+#~ "Hi! Welcome to anchorChecker bot!\n"
+#~ "Right now it supports notifies for the following commands:\n"
+#~ "/apy - add a new APY notifier\n"
+#~ "/reserve - \n"
+#~ "/list - list all current notifiers\n"
+#~ "/help - show this help\n"
+#~ "Right now the updates it's APY once in an hour\n"
+#~ "    "
+#~ msgstr ""
+#~ "\n"
+#~ "Привет! Добро пожаловать в anchorChecker бот!\n"
+#~ "Пока что он поддерживает следующие команды:\n"
+#~ "/apy - добавить новый APY нотификатор\n"
+#~ "/reserve - \n"
+#~ "/list - список всех текущих нотификаторов\n"
+#~ "/help - показать эту помощь\n"
+#~ "Пока что он обновляет APY один раз в час\n"
+#~ "    "
 

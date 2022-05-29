@@ -45,6 +45,47 @@ Theese docs are impossible to generate because of bot decorators
     :param message: Telegram message(its content is not relevant). Then, state is set to monitoring_state.
     :type message: telebot.types.Message
 
+.. py:function:: anc_price(message: telebot.types.Message) -> None
+    :async:
+
+    Get the current price of ANC token and report it to the user.
+
+    :param message: Telegram message(its content is not relevant).
+    :type message: telebot.types.Message
+
+.. py:function:: luna_price(message: telebot.types.Message) -> None
+    :async:
+
+    Get the current price of LUNA token and report it to the user.
+
+    :param message: Telegram message(its content is not relevant).
+    :type message: telebot.types.Message
+
+.. py:function:: anc_cap(message: telebot.types.Message) -> None
+    :async:
+
+    Get the current market cap of ANC token and report it to the user.
+
+    :param message: Telegram message(its content is not relevant).
+    :type message: telebot.types.Message
+
+.. py:function:: ust_cap(message: telebot.types.Message) -> None
+    :async:
+
+    Get the current market cap of UST token and report it to the user.
+
+    :param message: Telegram message(its content is not relevant).
+    :type message: telebot.types.Message
+
+.. py:function:: ust_price(message: telebot.types.Message) -> None
+    :async:
+
+    Get the current price of UST token and report it to the user.
+
+    :param message: Telegram message(its content is not relevant).
+    :type message: telebot.types.Message
+
+
 .. py:function:: run_notifications() -> None
     :async:
 
