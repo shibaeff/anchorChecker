@@ -1,14 +1,6 @@
 """Tasks for the project"""
 
 
-def task_hello():
-    """Hello cmd"""
-    msg = 3 * "hi! "
-    return {
-        'actions': ['echo %s ' % msg],
-    }
-
-
 def task_docs():
     """Build docs for project"""
     return {
@@ -18,17 +10,30 @@ def task_docs():
 
 def task_run_tests():
     """Run tests for the project"""
-    return {
-        'actions': ['cd ./anchor_binding && python3 ./test_anchor.py && cd ..']
-    }
+    yield {'actions': 'cd ./anchor_binding'}
+    yield {'actions': 'python3 ./test_anchor.py'}
+    yield {'actions': 'cd ..'}
 
 
 def task_run_checks():
     """Run flake, pydocstring, tests"""
+    yield {'actions': ['flake8 .'], 'task_dep': ['run_tests']}
+    yield {'actions': ['pydocstyle .']}
+
+def task_make_pot():
+    """Make pot file"""
     return {
-        'actions': ['flake8 .', 'pydocstyle .', 'doit run_tests']
+        'actions': ['pybabel extract -o bot.pot bot'],
+        'targets': ['bot.pot']
     }
 
+def task_make_po():
+    """Update translation."""
+    return {
+        'actions': ['pybabel update -D bot -d po -i bot.po'],
+        'task_dep': ['make_pot'],
+        'targets': ['po/ru/LC_MESSAGES/bot.po']
+    }
 
 def task_compile_ru():
     """Build russian localization"""

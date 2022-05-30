@@ -67,8 +67,12 @@ async def greet_threshhold(message: telebot.types.Message) -> None:
 Hi! Welcome to anchorChecker bot!
 Right now it supports notifies for the following commands:
 /apy - add a new APY notifier
-/reserve - 
 /list - list all current notifiers
+/anc_price - get the current price of ANC token
+/luna_price - get the current price of LUNA
+/anc_cap - get the current ANC token market cap
+/ust_cap - get the current UST market cap
+/ust_price - get the current UST price
 /help - show this help
 Right now the updates it's APY once in an hour
     """),
@@ -144,6 +148,61 @@ async def list_notifiers(message: telebot.types.Message) -> None:
                 await bot.send_message(message.chat.id, _("found notifier: {}").format(notifier))
         else:
             await bot.send_message(message.chat.id, _("No notifiers set yet"))
+
+
+@bot.message_handler(state=BotStates.monitoring_state, commands=["anc_price"])
+async def anc_price(message: telebot.types.Message) -> None:
+    """
+    Get the current price of ANC token and report it to the user.
+
+    :param message: Telegram message(its content is not relevant).
+    :type message: telebot.types.Message
+    """
+    await bot.send_message(message.chat.id, _("Current ANC price is {}").format(AnchorAPI.get_anc_price()))
+
+
+@bot.message_handler(state=BotStates.monitoring_state, commands=["luna_price"])
+async def luna_price(message: telebot.types.Message) -> None:
+    """
+    Get the current price of LUNA token and report it to the user.
+
+    :param message: Telegram message(its content is not relevant).
+    :type message: telebot.types.Message
+    """
+    await bot.send_message(message.chat.id, _("Current LUNA price is {}").format(AnchorAPI.get_luna_price()))
+
+
+@bot.message_handler(state=BotStates.monitoring_state, commands=["anc_cap"])
+async def anc_cap(message: telebot.types.Message) -> None:
+    """
+    Get the current market cap of ANC token and report it to the user.
+
+    :param message: Telegram message(its content is not relevant).
+    :type message: telebot.types.Message
+    """
+    await bot.send_message(message.chat.id, _("Current ANC market cap is {}").format(AnchorAPI.get_anc_cap()))
+
+
+@bot.message_handler(state=BotStates.monitoring_state, commands=["ust_cap"])
+async def ust_cap(message: telebot.types.Message) -> None:
+    """
+    Get the current market cap of UST token and report it to the user.
+
+    :param message: Telegram message(its content is not relevant).
+    :type message: telebot.types.Message
+    """
+    await bot.send_message(message.chat.id, _("Current UST market cap is {}").format(AnchorAPI.get_ust_cap()))
+
+
+@bot.message_handler(state=BotStates.monitoring_state, commands=["ust_price"])
+async def ust_price(message: telebot.types.Message) -> None:
+    """
+    Get the current price of UST token and report it to the user.
+
+    :param message: Telegram message(its content is not relevant).
+    :type message: telebot.types.Message
+    """
+    await bot.send_message(message.chat.id, _("Current UST price is {}").format(AnchorAPI.get_ust_price()))
 
 
 async def run_notifications() -> None:
