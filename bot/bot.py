@@ -30,6 +30,8 @@ try:
 except Exception:
     token = os.getenv("KEY")
 
+
+logging.debug(token)
 bot = AsyncTeleBot(
     token,
     parse_mode="MARKDOWN",
@@ -158,7 +160,7 @@ async def anc_price(message: telebot.types.Message) -> None:
     :param message: Telegram message(its content is not relevant).
     :type message: telebot.types.Message
     """
-    await bot.send_message(message.chat.id, _("Current ANC price is {}").format(AnchorAPI.get_anc_price()))
+    await bot.send_message(message.chat.id, _("Current ANC price is {}").format(AnchorAPI("./anchor_binding/app").get_anc_price()))
 
 
 @bot.message_handler(state=BotStates.monitoring_state, commands=["luna_price"])
@@ -169,7 +171,7 @@ async def luna_price(message: telebot.types.Message) -> None:
     :param message: Telegram message(its content is not relevant).
     :type message: telebot.types.Message
     """
-    await bot.send_message(message.chat.id, _("Current LUNA price is {}").format(AnchorAPI.get_luna_price()))
+    await bot.send_message(message.chat.id, _("Current LUNA price is {}").format(AnchorAPI("./anchor_binding/app").get_luna_price()))
 
 
 @bot.message_handler(state=BotStates.monitoring_state, commands=["anc_cap"])
@@ -180,7 +182,7 @@ async def anc_cap(message: telebot.types.Message) -> None:
     :param message: Telegram message(its content is not relevant).
     :type message: telebot.types.Message
     """
-    await bot.send_message(message.chat.id, _("Current ANC market cap is {}").format(AnchorAPI.get_anc_cap()))
+    await bot.send_message(message.chat.id, _("Current ANC market cap is {}").format(AnchorAPI("./anchor_binding/app").get_anc_cap()))
 
 
 @bot.message_handler(state=BotStates.monitoring_state, commands=["ust_cap"])
@@ -191,7 +193,7 @@ async def ust_cap(message: telebot.types.Message) -> None:
     :param message: Telegram message(its content is not relevant).
     :type message: telebot.types.Message
     """
-    await bot.send_message(message.chat.id, _("Current UST market cap is {}").format(AnchorAPI.get_ust_cap()))
+    await bot.send_message(message.chat.id, _("Current UST market cap is {}").format(AnchorAPI("./anchor_binding/app").get_ust_cap()))
 
 
 @bot.message_handler(state=BotStates.monitoring_state, commands=["ust_price"])
@@ -202,7 +204,7 @@ async def ust_price(message: telebot.types.Message) -> None:
     :param message: Telegram message(its content is not relevant).
     :type message: telebot.types.Message
     """
-    await bot.send_message(message.chat.id, _("Current UST price is {}").format(AnchorAPI.get_ust_price()))
+    await bot.send_message(message.chat.id, _("Current UST price is {}").format(AnchorAPI("./anchor_binding/app").get_ust_price()))
 
 
 async def run_notifications() -> None:
