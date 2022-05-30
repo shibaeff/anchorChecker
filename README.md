@@ -24,12 +24,19 @@ https://shibaeff.github.io/anchorBotDocs/
 **Интерфейс**
 
 /apy - add a new APY notifier
+
 /list - list all current notifiers
+
 /anc_price - get the current price of ANC token
+
 /luna_price - get the current price of LUNA
+
 /anc_cap - get the current ANC token market cap
+
 /ust_cap - get the current UST market cap
+
 /ust_price - get the current UST price
+
 /help - show this help
 
 ***Deploy***
