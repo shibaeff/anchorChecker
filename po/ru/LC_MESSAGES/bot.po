@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  0.0.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-30 00:56+0300\n"
+"POT-Creation-Date: 2022-05-30 13:07+0300\n"
 "PO-Revision-Date: 2022-04-25 01:37+0300\n"
 "Last-Translator: ILYA SAVITSKY <iipsavitsky234@gmail.com>\n"
 "Language: ru\n"
@@ -19,77 +19,64 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.10.1\n"
 
-#: bot/bot.py:66
+#: bot/bot.py:69
 msgid ""
 "\n"
 "Hi! Welcome to anchorChecker bot!\n"
 "Right now it supports notifies for the following commands:\n"
-"/apy - add a new APY notifier\n"
-"/list - list all current notifiers\n"
-"/anc_price - get the current price of ANC token\n"
-"/luna_price - get the current price of LUNA\n"
-"/anc_cap - get the current ANC token market cap\n"
-"/ust_cap - get the current UST market cap\n"
-"/ust_price - get the current UST price\n"
-"/help - show this help\n"
+"This bot can query APY with notifiers, as well as query different prices "
+"of associated tokens\n"
 "Right now the updates it's APY once in an hour\n"
 "    "
 msgstr ""
 "\n"
-"Привет! Добро пожаловать в anchorChecker бот!\n"
-"В данный момент он поддерживает следующие команды:\n"
-"/apy - добавить новый APY нотификатор\n"
-"/list - список всех текущих нотификаторов\n"
-"/anc_price - текущая цена ANC токена\n"
-"/luna_price - текущая цена LUNA\n"
-"/anc_cap - текущий маркет кап ANC токена\n"
-"/ust_cap - текущий маркет кап UST\n"
-"/ust_price - текущая цена UST\n"
-"/help - показать эту помощь\n"
-"В данный момент обновления происходят раз в час\n"
-"    "
+"Добро пожаловать в anchorChecker!"
+"Сейчас готовы следующие команды"
+"Этот бот может получать APY с помощью нотификаторов, а так же получать цену соответствующих токенов"
+"Прямо сейчас поддержаны следующие команды"
+"   "
 
-#: bot/bot.py:92
+#: bot/bot.py:88
 msgid "Input your threshold:"
 msgstr "Введите границу:"
 
-#: bot/bot.py:109
+#: bot/bot.py:105
 msgid "Input threshhold's name"
 msgstr "Введите наименование границы"
 
-#: bot/bot.py:126
+#: bot/bot.py:122
 msgid "added thershhold name {} with value {}"
 msgstr "добавили границу {} с именем {}"
 
-#: bot/bot.py:147 bot/bot.py:148
+#: bot/bot.py:143 bot/bot.py:144
 msgid "found notifier: {}"
 msgstr "найден нотификатор: {}"
 
-#: bot/bot.py:150
+#: bot/bot.py:146
 msgid "No notifiers set yet"
 msgstr "Нотификаторов пока нет"
 
-#: bot/bot.py:156
+#: bot/bot.py:157
 msgid "Current ANC price is {}"
 msgstr "Текущая цена ANC составляет {}"
 
-#: bot/bot.py:162
+#: bot/bot.py:168
 msgid "Current LUNA price is {}"
 msgstr "Текущая цена LUNA составляет {}"
 
-#: bot/bot.py:168
+#: bot/bot.py:179
 msgid "Current ANC market cap is {}"
 msgstr "Текущая капитализация ANC составляет {}"
 
-#: bot/bot.py:174
+#: bot/bot.py:190
 msgid "Current UST market cap is {}"
 msgstr "Текущая капитализация UST составляет {}"
 
-#: bot/bot.py:180
+#: bot/bot.py:201
 msgid "Current UST price is {}"
 msgstr "Текущая цена UST составляет {}"
 
-#: bot/bot.py:191
+#: bot/bot.py:212
 msgid "Alarm! APY dropped below {} on notifier {}"
 msgstr "Внимание! APY падает ниже {} на нотификаторе {}"
 
@@ -112,5 +99,34 @@ msgstr "Внимание! APY падает ниже {} на нотификато
 #~ "/list - список всех текущих нотификаторов\n"
 #~ "/help - показать эту помощь\n"
 #~ "Пока что он обновляет APY один раз в час\n"
+#~ "    "
+
+#~ msgid ""
+#~ "\n"
+#~ "Hi! Welcome to anchorChecker bot!\n"
+#~ "Right now it supports notifies for the following commands:\n"
+#~ "/apy - add a new APY notifier\n"
+#~ "/list - list all current notifiers\n"
+#~ "/anc_price - get the current price of ANC token\n"
+#~ "/luna_price - get the current price of LUNA\n"
+#~ "/anc_cap - get the current ANC token market cap\n"
+#~ "/ust_cap - get the current UST market cap\n"
+#~ "/ust_price - get the current UST price\n"
+#~ "/help - show this help\n"
+#~ "Right now the updates it's APY once in an hour\n"
+#~ "    "
+#~ msgstr ""
+#~ "\n"
+#~ "Привет! Добро пожаловать в anchorChecker бот!\n"
+#~ "В данный момент он поддерживает следующие команды:\n"
+#~ "/apy - добавить новый APY нотификатор\n"
+#~ "/list - список всех текущих нотификаторов\n"
+#~ "/anc_price - текущая цена ANC токена\n"
+#~ "/luna_price - текущая цена LUNA\n"
+#~ "/anc_cap - текущий маркет кап ANC токена\n"
+#~ "/ust_cap - текущий маркет кап UST\n"
+#~ "/ust_price - текущая цена UST\n"
+#~ "/help - показать эту помощь\n"
+#~ "В данный момент обновления происходят раз в час\n"
 #~ "    "
 

@@ -59,6 +59,7 @@ async def greet_threshhold(message: telebot.types.Message) -> None:
     :param message: Telegram message(its content is not relevant)
     :type message: telebot.types.Message
     """
+    logging.debug("in greeter")
     asyncio.gather(
         bot.set_state(
             message.from_user.id, BotStates.monitoring_state, message.chat.id
@@ -68,14 +69,7 @@ async def greet_threshhold(message: telebot.types.Message) -> None:
             _("""
 Hi! Welcome to anchorChecker bot!
 Right now it supports notifies for the following commands:
-/apy - add a new APY notifier
-/list - list all current notifiers
-/anc_price - get the current price of ANC token
-/luna_price - get the current price of LUNA
-/anc_cap - get the current ANC token market cap
-/ust_cap - get the current UST market cap
-/ust_price - get the current UST price
-/help - show this help
+This bot can query APY with notifiers, as well as query different prices of associated tokens
 Right now the updates it's APY once in an hour
     """),
         ),
