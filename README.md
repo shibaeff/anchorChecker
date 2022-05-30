@@ -23,11 +23,14 @@ https://shibaeff.github.io/anchorBotDocs/
 
 **Интерфейс**
 
-`/help` - хелп по боту.
-
-`/reserve` - включить/выключить уведомления по резерву.
-
-`/apy` - включить/выключить уведомления по ключевой ставке.
+/apy - add a new APY notifier
+/list - list all current notifiers
+/anc_price - get the current price of ANC token
+/luna_price - get the current price of LUNA
+/anc_cap - get the current ANC token market cap
+/ust_cap - get the current UST market cap
+/ust_price - get the current UST price
+/help - show this help
 
 ***Deploy***
 
